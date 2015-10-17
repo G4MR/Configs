@@ -1,5 +1,5 @@
 {
-    "name": "g4mr/Configs",
+    "name": "g4mr/configs",
     "description": "Configuration loader class for loading different types of files into array data",
     "license": "MIT",
     "keywords": ["config", "config loader", "g4mr"],
