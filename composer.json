@@ -1,0 +1,24 @@
+{
+    "name": "g4mr/Configs",
+    "description": "Configuration loader class for loading different types of files into array data",
+    "license": "MIT",
+    "keywords": ["config", "config loader", "g4mr"],
+    "authors": [
+        {
+            "name": "Lamonte Harris"
+        }
+    ],
+    "require": {
+        "igorw/get-in": "1.0.*",
+        "symfony/yaml": "2.7.*",
+        "league/flysystem": "1.0.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.0.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "G4MR\\Configs\\": "src"
+        }
+    }
+}

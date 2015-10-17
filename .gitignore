@@ -1,0 +1,5 @@
+.vagrant
+VagrantFile
+/vendor/
+composer.lock
+phpunit.phar

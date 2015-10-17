@@ -1,0 +1,7 @@
+users:
+  -
+    username: "Lamonte Modified"
+    email: "example@example.com"
+  -
+    username: "John Doe Modified"
+    email: "johndoe@example.com"
