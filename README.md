@@ -1,11 +1,11 @@
-= G4MR\Configs
+#G4MR\Configs
 
 This is a simple library which allows you to load config files as array data
 and accessing the data using dot-notation.  I made this library to simplify
 the process of loading YAML config files with the ease of implementing
 your own config loader.
 
-== Example
+## Example
 
     use G4MR\Configs\Config;
     use G4MR\Configs\Loaders\YamlLoader;
@@ -20,7 +20,7 @@ your own config loader.
 
 Check the tests folder for examples on how to implement your own config loader,
 
-== TODO
+## TODO
 
 - Add in a method which performs `get('filename')` and returns
 an object so we can perform multiple `getItem()` calls without
