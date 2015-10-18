@@ -5,6 +5,11 @@ and accessing the data using dot-notation.  I made this library to simplify
 the process of loading YAML config files with the ease of implementing
 your own config loader.
 
+# Composer
+
+Install via [composer](https://packagist.org/packages/g4mr/configs) using `composer require g4mr/configs` 
+
+
 ## Example 1
 
     use G4MR\Configs\Config;
