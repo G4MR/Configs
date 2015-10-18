@@ -51,4 +51,4 @@ Install via [composer](https://packagist.org/packages/g4mr/configs) using `compo
 
 ## Custom Loader
 
-Check the tests folder for examples on how to implement your own config loader,
+Check the tests folder for examples on how to implement your own config loader.
