@@ -12,7 +12,7 @@ class ConfigsTest extends PHPUnit_Framework_TestCase
      * @var Config
      */
     private $config;
-    
+
     public function __construct()
     {
         $this->config = new Config(new YamlLoader(__DIR__ . '/configs'));
@@ -56,6 +56,20 @@ class ConfigsTest extends PHPUnit_Framework_TestCase
         $this->assertNotEmpty($data);
     }
 
+    public function testYAMLConfigItemObjectItemExists()
+    {
+        $test_data = $this->config->getItem('test');
+
+        $this->assertNotEmpty($test_data->get('users.0.username'));
+    }
+
+    public function testYAMLConfigItemObjectItemValueEqualsValue()
+    {
+        $test_data = $this->config->getItem('test');
+
+        $this->assertEquals('Lamonte', $test_data->get('users.0.username'));
+    }
+
     public function testPHPLoaderAndValuesAndDataExists()
     {
         $data = $this->php_config->get('test');
@@ -91,5 +105,19 @@ class ConfigsTest extends PHPUnit_Framework_TestCase
         $data = $this->php_config->get('test.users.0.username');
 
         $this->assertNotEmpty($data);
+    }
+
+    public function testPHPLoaderItemObjectItemExists()
+    {
+        $test_data = $this->php_config->getItem('test');
+
+        $this->assertNotEmpty($test_data->get('users.0.username'));
+    }
+
+    public function testPHPLoaderItemObjectItemValueEqualsValue()
+    {
+        $test_data = $this->php_config->getItem('test');
+
+        $this->assertEquals('Lamonte', $test_data->get('users.0.username'));
     }
 }

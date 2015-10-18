@@ -8,6 +8,9 @@ use G4MR\Configs\Filesystem\LeagueFilesystem;
 use G4MR\Configs\Filesystem\FileSystemInterface;
 use Symfony\Component\Yaml\Exception\ParseException;
 
+/**
+ * @package G4MR\Configs\Loader
+ */
 class YamlLoader implements LoaderInterface
 {
     /**

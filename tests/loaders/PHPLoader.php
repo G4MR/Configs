@@ -1,8 +1,8 @@
 <?php
 
+use G4MR\Configs\Loader\LoaderInterface;
 use G4MR\Configs\Exceptions\ErrorLoadingFile;
 use G4MR\Configs\Exceptions\ErrorReadingFile;
-use G4MR\Configs\Loader\LoaderInterface;
 use G4MR\Configs\Filesystem\LeagueFilesystem;
 use G4MR\Configs\Filesystem\FileSystemInterface;
 

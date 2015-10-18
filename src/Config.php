@@ -3,6 +3,9 @@ namespace G4MR\Configs;
 
 use igorw;
 
+/**
+ * @package G4MR\Configs
+ */
 class Config
 {
     /**
@@ -16,6 +19,8 @@ class Config
     private $config_file_extension;
 
     /**
+     * Pass loader interface which sets the config folder
+     * for loading config files into array data.
      * @param Loader\LoaderInterface $loader
      */
     public function __construct(Loader\LoaderInterface $loader)
@@ -26,12 +31,35 @@ class Config
         $this->setExtension($this->loader->getExtension());
     }
 
+    /**
+     * setExtension() - sets the file extension of the config
+     * file that we are trying to load.
+     * @var string $extension
+     */
     public function setExtension($extension)
     {
         $this->config_file_extension = $extension;
     }
 
     /**
+     * loadConfig() - allows the loader to parse a config file
+     * and return the data as an array value
+     * @param string $path
+     * @return array
+     */
+    public function loadConfig($path)
+    {
+        //add extension to the config file
+        $path = sprintf("%s.%s", $path, $this->config_file_extension);
+
+        //lets try loading the config file data
+        return $this->loader->load($path);
+    }
+
+    /**
+     * get() - uses dot notation to set the config file name followed
+     * by array key items based on their hierarchy in the array object
+     * and attempts to return that array's item value else result to null
      * @param string $item dot notation config_file.array.item
      * @param mixed $default value if it doesn't exist
      * @return mixed
@@ -44,31 +72,53 @@ class Config
         }
 
         //break item data into dot notation
-        $config_array_pieces = explode('.', $item);
+        $item_pieces = explode('.', $item);
 
-        //lets get the file name if one exists
-        $config_file = array_shift($config_array_pieces);
-        if(empty($config_file)) {
-            return $default;
-        }
+        //get config file name
+        $config = array_shift($item_pieces);
 
-        //add extension to the config file path
-        $config_file = sprintf("%s.%s", $config_file, $this->config_file_extension);
-
-        //lets try loading the config file data
-        $data = $this->loader->load($config_file);
-
-        //if no array items exists return the full array
-        if(empty($config_array_pieces)) {
-            return $data;
-        }
+        //attempt to load data
+        $data = $this->loadConfig($config);
 
         //return default if data isn't an array
         if(!is_array($data)) {
             return $default;
         }
 
-        //try getting item
-        return igorw\get_in($data, $config_array_pieces, $default);
+        if(empty($item_pieces)) {
+            return $data;
+        }
+
+        //create item object
+        $item = new Item($data);
+
+        //attempt to return 
+        return $item->get(implode('.', $item_pieces), $default);
+    }
+
+    /**
+     * getItem() - loads the config file and returns an item object
+     * so if a user wants they could cache the item object and still
+     * be able to access all the config data without multiple file calls
+     * @param string $item dot notation config_file.array.item
+     * @param mixed $default value if it doesn't exist
+     * @return mixed
+     */
+    public function getItem($config)
+    {
+        //why would you send an empty value?
+        if(empty($config) || !is_string($config)) {
+            return false;
+        }
+
+        $data = $this->loadConfig($config);
+
+        //no config data available
+        if(!is_array($data)) {
+            return false;
+        }
+
+        //return item object
+        return new Item($data);
     }
 }

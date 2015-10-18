@@ -4,6 +4,9 @@ namespace G4MR\Configs\Filesystem;
 use League\Flysystem\Filesystem;
 use League\Flysystem\Adapter\Local;
 
+/**
+ * @package G4MR\Configs\Filesystem
+ */
 class LeagueFilesystem implements FileSystemInterface
 {
     private $filesystem;

@@ -1,6 +1,9 @@
 <?php
 namespace G4MR\Configs\Filesystem;
 
+/**
+ * @package G4MR\Configs\Filesystem
+ */
 interface FileSystemInterface
 {
     public function read($path);
