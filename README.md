@@ -11,7 +11,8 @@ Install via [composer](https://packagist.org/packages/g4mr/configs) using `compo
 
 
 ## Example 1
-
+```php
+    <?php
     use G4MR\Configs\Config;
     use G4MR\Configs\Loaders\YamlLoader;
 
@@ -22,9 +23,10 @@ Install via [composer](https://packagist.org/packages/g4mr/configs) using `compo
     if($db_config !== false) {
         echo $db_config['dbname'];
     }
-
+```
 ## Example 2 - using the item object
-
+```php
+    <?php
     use G4MR\Configs\Config;
     use G4MR\Configs\Loaders\YamlLoader;
 
@@ -45,6 +47,7 @@ Install via [composer](https://packagist.org/packages/g4mr/configs) using `compo
     $dbuser = $db_config->get('username', null);
     $dbpass = $db_config->get('password', null);
     $dbhost = $db_config->get('host', 'localhost');
+```
 
 ## Custom Loader
 
