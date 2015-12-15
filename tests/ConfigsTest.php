@@ -82,10 +82,9 @@ class ConfigsTest extends PHPUnit_Framework_TestCase
             'name' => 'dbname'
         ];
 
-        print_r($test_data->get('db'));
-
         $this->assertEquals('Jane', $test_data->get('users.2.username'));
         $this->assertEquals('hello', $test_data->get('testing'));
+        $this->assertEquals('localhost', $test_data->db['host']);
     }
 
     public function testPHPLoaderAndValuesAndDataExists()
