@@ -24,6 +24,7 @@ Install via [composer](https://packagist.org/packages/g4mr/configs) using `compo
         echo $db_config['dbname'];
     }
 ```
+
 ## Example 2 - using the item object
 ```php
     <?php
@@ -47,6 +48,51 @@ Install via [composer](https://packagist.org/packages/g4mr/configs) using `compo
     $dbuser = $db_config->get('username', null);
     $dbpass = $db_config->get('password', null);
     $dbhost = $db_config->get('host', 'localhost');
+```
+
+## Example 3 - Updating an item array
+```php
+    <?php
+    use G4MR\Configs\Config;
+    use G4MR\Configs\Loaders\YamlLoader;
+
+    $config = new Config(new YamlLoader(__DIR__ . '/config'));
+
+    //loads ./config/database.yml as an item object
+    $db_config = $config->getItem('database');
+    $db_config->set('db.user', 'root');
+    $db_config->set('db.pass', 'root');
+    $db_config->set('db.host', 'localhost');
+    $db_config->set('db.name', 'mydatabase');
+
+    $dbhost = $db_config->get('db.user'); // 'root'
+```
+
+You can also do something like:
+
+```php
+    <?php
+    use G4MR\Configs\Config;
+    use G4MR\Configs\Loaders\YamlLoader;
+
+    $config = new Config(new YamlLoader(__DIR__ . '/config'));
+
+    //loads ./config/connection.yml as an item object
+    $conn = $config->getItem('connection');
+    $conn->db = [
+        'host' => 'localhost',
+        'user' => 'root',
+        'pass' => 'root',
+        'name' => 'dbname'
+    ];
+
+    print_r($conn->get('db'));
+    //echo $conn->get('db.user');
+
+    //or
+
+    print_r($conn->db);
+
 ```
 
 ## Custom Loader

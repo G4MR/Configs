@@ -70,6 +70,24 @@ class ConfigsTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('Lamonte', $test_data->get('users.0.username'));
     }
 
+    public function testYAMLConfigSetItemObjectValueAndObjectHasNewValue()
+    {
+        $test_data = $this->config->getItem('test');
+        $test_data->set('users.2', array('username' => 'Jane'));
+        $test_data->testing = "hello";
+        $test_data->db = [
+            'host' => 'localhost',
+            'user' => 'root',
+            'pass' => 'root',
+            'name' => 'dbname'
+        ];
+
+        print_r($test_data->get('db'));
+
+        $this->assertEquals('Jane', $test_data->get('users.2.username'));
+        $this->assertEquals('hello', $test_data->get('testing'));
+    }
+
     public function testPHPLoaderAndValuesAndDataExists()
     {
         $data = $this->php_config->get('test');
