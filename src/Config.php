@@ -100,7 +100,7 @@ class Config
      * getItem() - loads the config file and returns an item object
      * so if a user wants they could cache the item object and still
      * be able to access all the config data without multiple file calls
-     * @param string $item dot notation config_file.array.item
+     * @param string $config - config file name
      * @return mixed
      */
     public function getItem($config)
