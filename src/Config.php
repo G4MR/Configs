@@ -101,7 +101,6 @@ class Config
      * so if a user wants they could cache the item object and still
      * be able to access all the config data without multiple file calls
      * @param string $item dot notation config_file.array.item
-     * @param mixed $default value if it doesn't exist
      * @return mixed
      */
     public function getItem($config)
